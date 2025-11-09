@@ -56,18 +56,17 @@ const Dashboard: React.FC = () => {
   const data = useMemo(() => aggregateData(rawData, aggregation), [rawData, aggregation]);
 
   return (
-    <div className="flex flex-col min-h-screen p-4 md:p-8 space-y-6">
-      <header className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">DataStream Dashboard</h1>
-          <p className="text-muted-foreground">Real-time data visualization and performance analysis</p>
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <header className="sticky top-0 z-10 flex items-center justify-between h-16 px-4 md:px-8 border-b bg-background/80 backdrop-blur-sm">
+        <div className="flex items-center gap-4">
+            <h1 className="text-xl font-bold tracking-tight">DataStream Dashboard</h1>
         </div>
         <PerformanceMonitor />
       </header>
 
-      <main className="flex-grow grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-3 flex flex-col space-y-6">
-          <Card>
+      <main className="flex-grow p-4 md:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-3 flex flex-col space-y-8">
+          <Card className="shadow-lg">
             <CardHeader>
               <CardTitle>Visualization Controls</CardTitle>
               <CardDescription>Adjust data stream and visualization parameters.</CardDescription>
@@ -85,13 +84,13 @@ const Dashboard: React.FC = () => {
           </Card>
           
           <Tabs value={activeChart} onValueChange={(value) => setActiveChart(value as ChartType)} className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full grid-cols-3 bg-muted/60">
               <TabsTrigger value="line">Line Chart</TabsTrigger>
               <TabsTrigger value="bar">Bar Chart</TabsTrigger>
               <TabsTrigger value="scatter">Scatter Plot</TabsTrigger>
             </TabsList>
             <TabsContent value="line">
-              <Card>
+              <Card className="shadow-lg">
                 <CardHeader>
                   <CardTitle>Real-time Line Chart</CardTitle>
                   <CardDescription>Streaming data over time.</CardDescription>
@@ -102,7 +101,7 @@ const Dashboard: React.FC = () => {
               </Card>
             </TabsContent>
             <TabsContent value="bar">
-              <Card>
+              <Card className="shadow-lg">
                 <CardHeader>
                   <CardTitle>Real-time Bar Chart</CardTitle>
                   <CardDescription>Comparing values at points in time.</CardDescription>
@@ -113,7 +112,7 @@ const Dashboard: React.FC = () => {
               </Card>
             </TabsContent>
             <TabsContent value="scatter">
-              <Card>
+              <Card className="shadow-lg">
                 <CardHeader>
                   <CardTitle>Real-time Scatter Plot</CardTitle>
                   <CardDescription>Distribution of data points.</CardDescription>
@@ -125,7 +124,7 @@ const Dashboard: React.FC = () => {
             </TabsContent>
           </Tabs>
 
-          <Card>
+          <Card className="shadow-lg">
              <CardHeader>
               <CardTitle>Raw Data Table</CardTitle>
               <CardDescription>The most recent {rawData.length} data points from the stream.</CardDescription>

@@ -26,17 +26,17 @@ export const DashboardControls: React.FC<DashboardControlsProps> = ({
   setAggregation,
 }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-      <div className="flex flex-col space-y-3">
-        <Label>Data Stream</Label>
-        <Button onClick={toggleStream} variant="outline" className="w-full md:w-32">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+      <div className="flex flex-col space-y-4">
+        <Label className="font-semibold">Data Stream Control</Label>
+        <Button onClick={toggleStream} variant={isRunning ? "destructive" : "default"} className="w-full md:w-36 shadow-md">
           {isRunning ? <Pause className="mr-2 h-4 w-4" /> : <Play className="mr-2 h-4 w-4" />}
-          {isRunning ? 'Pause' : 'Start'}
+          {isRunning ? 'Pause Stream' : 'Start Stream'}
         </Button>
       </div>
 
-      <div className="flex flex-col space-y-3">
-        <Label htmlFor="max-points">Data Points: {maxPoints}</Label>
+      <div className="flex flex-col space-y-4">
+        <Label htmlFor="max-points" className="font-semibold">Data Points: <span className="text-primary font-bold">{maxPoints}</span></Label>
         <Slider
           id="max-points"
           min={100}
@@ -47,8 +47,8 @@ export const DashboardControls: React.FC<DashboardControlsProps> = ({
         />
       </div>
 
-      <div className="flex flex-col space-y-3">
-        <Label>Aggregation Level</Label>
+      <div className="flex flex-col space-y-4">
+        <Label className="font-semibold">Aggregation Level</Label>
         <RadioGroup
           value={aggregation}
           onValueChange={(value) => setAggregation(value as AggregationLevel)}
